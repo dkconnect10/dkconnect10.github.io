@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dilip Kumar — Backend Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --white: #ffffff;
+      --off: #f7f8fc;
+      --soft: #eef1f8;
+      --border: #e2e7f0;
+      --blue: #2563eb;
+      --blue-light: #eff4ff;
+      --blue-mid: #dbeafe;
+      --indigo: #4f46e5;
+      --orange: #f97316;
+      --green: #16a34a;
+      --green-light: #dcfce7;
+      --text: #0f172a;
+      --sub: #475569;
+      --muted: #94a3b8;
+      --card-shadow: 0 2px 20px rgba(15,23,42,0.08);
+      --card-shadow-hover: 0 12px 48px rgba(37,99,235,0.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--off);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 60px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700; font-size: 1.2rem;
+      color: var(--text); text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--sub); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta {
+      background: var(--blue); color: #fff;
+      padding: 8px 20px; border-radius: 8px;
+      font-size: 0.8rem; font-weight: 600;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .nav-cta:hover { background: var(--indigo); transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      padding: 120px 60px 80px;
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 60px; align-items: center;
+      background: var(--white);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
+      top: -200px; right: -200px; pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(249,115,22,0.05) 0%, transparent 70%);
+      bottom: -100px; left: 80px; pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-light); color: var(--green);
+      font-size: 0.75rem; font-weight: 600;
+      padding: 6px 14px; border-radius: 100px;
+      margin-bottom: 28px;
+      animation: up 0.5s ease both;
+    }
+    .hero-badge::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green); animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.6)} }
+
+    .hero-name {
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      line-height: 1.0; letter-spacing: -0.03em;
+      color: var(--text); margin-bottom: 16px;
+      animation: up 0.5s 0.08s ease both;
+    }
+    .hero-name .hl {
+      color: var(--blue); position: relative;
+    }
+    .hero-name .hl::after {
+      content: ''; position: absolute;
+      bottom: 4px; left: 0; right: 0; height: 6px;
+      background: rgba(37,99,235,0.12); border-radius: 2px; z-index: -1;
+    }
+
+    .hero-role {
+      font-size: 1rem; color: var(--sub); font-weight: 400;
+      margin-bottom: 22px; line-height: 1.6;
+      animation: up 0.5s 0.16s ease both;
+    }
+    .hero-role strong { color: var(--text); font-weight: 600; }
+
+    .hero-bio {
+      font-size: 0.92rem; color: var(--sub); line-height: 1.85;
+      max-width: 540px; margin-bottom: 36px;
+      animation: up 0.5s 0.22s ease both;
+    }
+
+    .hero-pills {
+      display: flex; flex-wrap: wrap; gap: 9px;
+      margin-bottom: 36px;
+      animation: up 0.5s 0.28s ease both;
+    }
+    .pill {
+      background: var(--blue-light); color: var(--blue);
+      font-size: 0.75rem; font-weight: 600;
+      padding: 5px 14px; border-radius: 100px;
+      border: 1px solid var(--blue-mid);
+    }
+
+    .hero-actions {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      animation: up 0.5s 0.34s ease both;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 11px 24px; border-radius: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem; font-weight: 600;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .btn-blue { background: var(--blue); color: #fff; }
+    .btn-blue:hover { background: var(--indigo); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,0.3); }
+    .btn-ghost { background: var(--white); color: var(--text); border: 1.5px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
+
+    .hero-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 20px; padding: 30px;
+      box-shadow: var(--card-shadow);
+      animation: right 0.7s 0.2s ease both;
+      position: relative; z-index: 1;
+    }
+    .hero-card-top {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 24px; padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .avatar {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--blue), var(--indigo));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1.3rem; font-weight: 700; color: #fff; flex-shrink: 0;
+    }
+    .hc-name { font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); }
+    .hc-sub { font-size: 0.73rem; color: var(--muted); margin-top: 2px; }
+
+    .hc-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+    .hc-stat { background: var(--off); border-radius: 12px; padding: 14px; text-align: center; }
+    .hc-stat-num { font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--blue); line-height: 1; }
+    .hc-stat-lbl { font-size: 0.62rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 4px; }
+    .hc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .hc-tag { background: var(--soft); color: var(--sub); font-size: 0.7rem; font-weight: 500; padding: 4px 10px; border-radius: 6px; }
+
+    @keyframes up { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes right { from{opacity:0;transform:translateX(30px)} to{opacity:1;transform:translateX(0)} }
+
+    /* SECTIONS */
+    section { padding: 90px 60px; }
+    section:nth-child(even) { background: var(--white); }
+
+    .sec-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue-light); color: var(--blue);
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 14px;
+    }
+    .sec-title {
+      font-family: 'Clash Display', sans-serif; font-weight: 700;
+      font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+      letter-spacing: -0.025em; color: var(--text);
+      margin-bottom: 10px; line-height: 1.15;
+    }
+    .sec-sub { font-size: 0.9rem; color: var(--sub); line-height: 1.7; max-width: 520px; margin-bottom: 52px; }
+
+    /* ABOUT */
+    .about-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: start; }
+    .about-text p { font-size: 0.9rem; color: var(--sub); line-height: 1.85; margin-bottom: 18px; }
+    .about-text p strong { color: var(--text); }
+    .about-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .fact-card {
+      background: var(--off); border: 1px solid var(--border);
+      border-radius: 16px; padding: 22px 18px;
+      transition: all 0.2s;
+    }
+    .fact-card:hover { box-shadow: var(--card-shadow-hover); transform: translateY(-4px); }
+    .fact-num { font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 1.9rem; color: var(--blue); line-height: 1; }
+    .fact-label { font-size: 0.7rem; color: var(--muted); font-weight: 500; margin-top: 5px; }
+
+    /* SKILLS */
+    #skills { background: var(--off); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .skill-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px; transition: all 0.2s;
+    }
+    .skill-card:hover { border-color: var(--blue); box-shadow: var(--card-shadow-hover); transform: translateY(-4px); }
+    .skill-card-title {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 0.78rem; color: var(--text);
+      margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .skill-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--blue-light);
+      display: flex; align-items: center; justify-content: center; font-size: 0.95rem;
+    }
+    .skill-tags-wrap { display: flex; flex-wrap: wrap; gap: 7px; }
+    .stag {
+      background: var(--soft); color: var(--sub);
+      font-size: 0.72rem; font-weight: 500;
+      padding: 5px 11px; border-radius: 7px; transition: all 0.15s;
+    }
+    .stag:hover { background: var(--blue-light); color: var(--blue); }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; gap: 18px; }
+    .exp-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 20px; padding: 30px; transition: all 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .exp-card::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 4px;
+      background: linear-gradient(to bottom, var(--blue), var(--indigo));
+      border-radius: 4px 0 0 4px;
+    }
+    .exp-card:hover { box-shadow: var(--card-shadow-hover); transform: translateY(-3px); }
+    .exp-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; flex-wrap: wrap; gap: 10px; }
+    .exp-role { font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--text); }
+    .exp-badge {
+      background: var(--blue-light); color: var(--blue);
+      font-size: 0.7rem; font-weight: 600; padding: 4px 12px; border-radius: 100px;
+    }
+    .exp-badge.current { background: var(--green-light); color: var(--green); }
+    .exp-company { font-size: 0.8rem; color: var(--orange); font-weight: 600; margin-bottom: 16px; }
+    .exp-points { list-style: none; }
+    .exp-points li {
+      font-size: 0.85rem; color: var(--sub); line-height: 1.75;
+      padding-left: 20px; position: relative; margin-bottom: 6px;
+    }
+    .exp-points li::before { content: '→'; position: absolute; left: 0; color: var(--blue); font-size: 0.75rem; }
+
+    /* PROJECTS */
+    .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px; }
+    .proj-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden; transition: all 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .proj-card:hover { box-shadow: var(--card-shadow-hover); transform: translateY(-6px); border-color: var(--blue); }
+    .proj-banner { height: 6px; background: linear-gradient(90deg, var(--blue), var(--indigo), var(--orange)); }
+    .proj-body { padding: 26px; flex: 1; display: flex; flex-direction: column; }
+    .proj-icon-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .proj-emoji { font-size: 1.9rem; }
+    .proj-link {
+      font-size: 0.72rem; color: var(--blue); text-decoration: none;
+      font-weight: 600; display: flex; align-items: center; gap: 4px; transition: gap 0.2s;
+    }
+    .proj-link:hover { gap: 8px; }
+    .proj-name { font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--text); margin-bottom: 10px; }
+    .proj-desc { font-size: 0.83rem; color: var(--sub); line-height: 1.8; margin-bottom: 18px; flex: 1; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ptag { background: var(--blue-light); color: var(--blue); font-size: 0.68rem; font-weight: 600; padding: 4px 10px; border-radius: 7px; }
+
+    /* LEETCODE */
+    #leetcode { background: var(--off); }
+    .lc-layout { display: grid; grid-template-columns: 320px 1fr; gap: 28px; align-items: start; }
+    .lc-main-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px 26px;
+      text-align: center; box-shadow: var(--card-shadow);
+    }
+    .lc-ring-wrap { position: relative; width: 150px; height: 150px; margin: 0 auto 22px; }
+    .lc-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .lc-track { fill: none; stroke: var(--soft); stroke-width: 12; }
+    .lc-easy { fill: none; stroke: #22c55e; stroke-width: 12; stroke-linecap: round; stroke-dasharray: 408; stroke-dashoffset: 155; }
+    .lc-med  { fill: none; stroke: #f59e0b; stroke-width: 12; stroke-linecap: round; stroke-dasharray: 408; stroke-dashoffset: 257; }
+    .lc-hard { fill: none; stroke: #ef4444; stroke-width: 12; stroke-linecap: round; stroke-dasharray: 408; stroke-dashoffset: 404; }
+    .lc-inner { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; }
+    .lc-num { font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 2rem; color: var(--text); line-height: 1; }
+    .lc-lbl { font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+    .lc-breakdown { display: flex; justify-content: center; gap: 24px; margin-bottom: 22px; }
+    .lc-d { text-align: center; }
+    .lc-d-num { font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 1.3rem; }
+    .lc-d-num.e { color: #22c55e; }
+    .lc-d-num.m { color: #f59e0b; }
+    .lc-d-num.h { color: #ef4444; }
+    .lc-d-lbl { font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
+    .lc-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--blue); color: #fff;
+      font-size: 0.78rem; font-weight: 600; padding: 10px 20px;
+      border-radius: 10px; text-decoration: none; transition: all 0.2s;
+    }
+    .lc-btn:hover { background: var(--indigo); transform: translateY(-2px); }
+    .lc-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .lc-stat-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px; transition: all 0.2s;
+    }
+    .lc-stat-card:hover { border-color: var(--blue); box-shadow: var(--card-shadow-hover); transform: translateY(-3px); }
+    .lc-stat-num { font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 1.7rem; color: var(--blue); line-height: 1; margin-bottom: 5px; }
+    .lc-stat-lbl { font-size: 0.66rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; }
+    .lc-badge-card {
+      grid-column: span 2;
+      background: linear-gradient(135deg, #eff4ff, #f0fdf4);
+      border: 1.5px solid var(--blue-mid);
+      border-radius: 16px; padding: 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .lc-badge-em { font-size: 2rem; }
+    .lc-badge-txt { font-size: 0.82rem; color: var(--sub); line-height: 1.6; }
+    .lc-badge-txt strong { color: var(--text); font-weight: 700; }
+
+    /* CONTACT */
+    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .contact-info p { font-size: 0.9rem; color: var(--sub); line-height: 1.85; margin-bottom: 30px; }
+    .contact-links { display: flex; flex-direction: column; gap: 10px; }
+    .cl {
+      display: flex; align-items: center; gap: 13px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 13px 16px;
+      text-decoration: none; color: var(--sub); font-size: 0.82rem; font-weight: 500;
+      transition: all 0.2s;
+    }
+    .cl:hover { border-color: var(--blue); color: var(--blue); transform: translateX(5px); box-shadow: var(--card-shadow-hover); }
+    .cl-ico { font-size: 1.05rem; width: 20px; text-align: center; }
+    .contact-form { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 34px; box-shadow: var(--card-shadow); }
+    .form-title { font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 1.25rem; color: var(--text); margin-bottom: 22px; }
+    .fgroup { margin-bottom: 16px; }
+    .flabel { display: block; font-size: 0.73rem; font-weight: 700; color: var(--text); letter-spacing: 0.04em; margin-bottom: 7px; text-transform: uppercase; }
+    .finput, .ftextarea {
+      width: 100%; background: var(--off); border: 1.5px solid var(--border);
+      color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.87rem; padding: 11px 14px; border-radius: 10px; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s; resize: none;
+    }
+    .finput::placeholder, .ftextarea::placeholder { color: var(--muted); }
+    .finput:focus, .ftextarea:focus { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(37,99,235,0.1); }
+    .ftextarea { height: 116px; }
+    .fsubmit {
+      display: block; width: 100%;
+      background: var(--blue); color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.88rem; font-weight: 700; padding: 13px;
+      border-radius: 10px; border: none; cursor: pointer;
+      text-decoration: none; text-align: center; transition: all 0.2s; margin-top: 4px;
+    }
+    .fsubmit:hover { background: var(--indigo); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,0.3); }
+
+    footer {
+      background: var(--text); color: #fff;
+      padding: 36px 60px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-logo { font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: 1.05rem; color: #fff; }
+    .footer-logo span { color: #60a5fa; }
+    .footer-copy { font-size: 0.73rem; color: rgba(255,255,255,0.35); }
+
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.on { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 960px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+      .hero-card { display: none; }
+      section { padding: 60px 24px; }
+      .about-layout, .lc-layout, .contact-layout { grid-template-columns: 1fr; gap: 28px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; padding: 26px 24px; }
+      .proj-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#"><span class="nav-dot"></span> Dilip Kumar</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#leetcode">LeetCode</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="mailto:dilipkumarconnect@gmail.com" class="nav-cta">Hire Me →</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div>
+      <div class="hero-badge">Open to Opportunities</div>
+      <h1 class="hero-name">Backend<br><span class="hl">Engineer.</span></h1>
+      <p class="hero-role"><strong>Dilip Kumar</strong> · Python · Django · AWS · FinTech</p>
+      <p class="hero-bio">
+        Nearly 2 years of building secure, scalable, high-performance backend systems for financial platforms — where every query, every byte of sensitive data, and every API call actually matters.
+      </p>
+      <div class="hero-pills">
+        <span class="pill">🐍 Python</span>
+        <span class="pill">⚡ Django REST</span>
+        <span class="pill">☁️ AWS</span>
+        <span class="pill">🐘 PostgreSQL</span>
+        <span class="pill">🔐 FinTech</span>
+      </div>
+      <div class="hero-actions">
+        <a href="mailto:dilipkumarconnect@gmail.com" class="btn btn-blue">✉ Get in Touch</a>
+        <a href="https://github.com/dkconnect10" target="_blank" class="btn btn-ghost">⌥ GitHub</a>
+        <a href="#experience" class="btn btn-ghost">See My Work ↓</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="hero-card-top">
+        <div class="avatar">DK</div>
+        <div>
+          <div class="hc-name">Dilip Kumar</div>
+          <div class="hc-sub">Backend Developer · Jodhpur, Rajasthan</div>
+        </div>
+      </div>
+      <div class="hc-stat-grid">
+        <div class="hc-stat"><div class="hc-stat-num">~2</div><div class="hc-stat-lbl">Yrs Exp</div></div>
+        <div class="hc-stat"><div class="hc-stat-num">117+</div><div class="hc-stat-lbl">LC Solved</div></div>
+        <div class="hc-stat"><div class="hc-stat-num">3</div><div class="hc-stat-lbl">Companies</div></div>
+        <div class="hc-stat"><div class="hc-stat-num">50</div><div class="hc-stat-lbl">Max Streak</div></div>
+      </div>
+      <div class="hc-tags">
+        <span class="hc-tag">Django</span><span class="hc-tag">DRF</span>
+        <span class="hc-tag">AWS Lambda</span><span class="hc-tag">PostgreSQL</span>
+        <span class="hc-tag">Redis</span><span class="hc-tag">Docker</span>
+        <span class="hc-tag">Nginx</span><span class="hc-tag">Linux</span><span class="hc-tag">Git</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="sec-tag">01 · About Me</div>
+    <h2 class="sec-title">Who I Am</h2>
+    <div class="about-layout reveal">
+      <div class="about-text">
+        <p>I'm a <strong>Backend Software Engineer</strong> from Jodhpur, Rajasthan, specialising in production systems for the FinTech industry. My work sits at the intersection of correctness, security, and raw performance — areas where shortcuts have real consequences.</p>
+        <p>From implementing <strong>transaction-heavy REST APIs</strong> to engineering bulk data pipelines and serverless AWS functions, I've shipped backend systems that handle sensitive financial data at scale. I take security seriously — encryption, hardened headers, proper auth — not as checkboxes, but as foundations.</p>
+        <p>Outside of work, I'm a consistent <strong>DSA practitioner</strong> on LeetCode and actively deepening my knowledge of System Design. I believe strong CS fundamentals make better engineers, and I invest in mine regularly.</p>
+      </div>
+      <div class="about-facts">
+        <div class="fact-card"><div class="fact-num">~2<span style="font-size:0.9rem;color:var(--muted)"> yr</span></div><div class="fact-label">Professional Experience</div></div>
+        <div class="fact-card"><div class="fact-num">117+</div><div class="fact-label">LeetCode Problems</div></div>
+        <div class="fact-card"><div class="fact-num">50</div><div class="fact-label">Day Max Streak</div></div>
+        <div class="fact-card"><div class="fact-num">3</div><div class="fact-label">Companies Worked</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="sec-tag">02 · Skills</div>
+    <h2 class="sec-title">Tech Stack</h2>
+    <p class="sec-sub">Technologies I work with daily and tools I've shipped production code with.</p>
+    <div class="skills-grid reveal">
+      <div class="skill-card">
+        <div class="skill-card-title"><div class="skill-icon">⚙️</div> Languages & Frameworks</div>
+        <div class="skill-tags-wrap">
+          <span class="stag">Python</span><span class="stag">Django</span>
+          <span class="stag">Django REST Framework</span><span class="stag">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title"><div class="skill-icon">🔌</div> Backend Concepts</div>
+        <div class="skill-tags-wrap">
+          <span class="stag">REST APIs</span><span class="stag">Auth & Authorization</span>
+          <span class="stag">Async Processing</span><span class="stag">Microservices</span>
+          <span class="stag">Encryption</span><span class="stag">Security Headers</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title"><div class="skill-icon">🗄️</div> Databases & Cache</div>
+        <div class="skill-tags-wrap">
+          <span class="stag">PostgreSQL</span><span class="stag">MySQL</span>
+          <span class="stag">Redis</span><span class="stag">DB Indexing</span>
+          <span class="stag">Query Optimization</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title"><div class="skill-icon">☁️</div> Cloud & DevOps</div>
+        <div class="skill-tags-wrap">
+          <span class="stag">AWS EC2</span><span class="stag">AWS S3</span>
+          <span class="stag">AWS RDS</span><span class="stag">AWS Lambda</span>
+          <span class="stag">API Gateway</span><span class="stag">CloudFront</span>
+          <span class="stag">Docker</span><span class="stag">Nginx</span>
+          <span class="stag">Linux</span><span class="stag">Git</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title"><div class="skill-icon">🧠</div> Core CS</div>
+        <div class="skill-tags-wrap">
+          <span class="stag">Data Structures & Algorithms</span>
+          <span class="stag">DBMS</span><span class="stag">OOPs</span><span class="stag">System Design</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="sec-tag">03 · Experience</div>
+    <h2 class="sec-title">Where I've Worked</h2>
+    <p class="sec-sub">A track record of building real systems in production environments.</p>
+    <div class="exp-list reveal">
+      <div class="exp-card">
+        <div class="exp-top">
+          <div class="exp-role">Backend Developer</div>
+          <div class="exp-badge current">🟢 Current · Dec 2025 – Present</div>
+        </div>
+        <div class="exp-company">Anand Rathi IT Pvt. Ltd. · FinTech · Jodhpur, India</div>
+        <ul class="exp-points">
+          <li>Contributed to the <strong>Workstation platform</strong> for financial workflows used at scale across Anand Rathi Wealth.</li>
+          <li>Implemented security headers across <strong>Nginx, AWS CloudFront, and API Gateway</strong> to harden platform security posture.</li>
+          <li>Built serverless backend functions with <strong>AWS Lambda</strong> for modular, event-driven microservices.</li>
+          <li>Engineered a <strong>bulk upload feature</strong> to efficiently process large financial datasets with high reliability.</li>
+          <li>Implemented <strong>encryption and decryption</strong> mechanisms for sensitive application data at rest and in transit.</li>
+          <li>Improved DB performance via <strong>index strategies and query optimizations</strong>; resolved critical production incidents.</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-top">
+          <div class="exp-role">Backend Developer</div>
+          <div class="exp-badge">Jan 2025 – Dec 2025</div>
+        </div>
+        <div class="exp-company">Now A Wave Technologies Pvt. Ltd. · Jodhpur, India</div>
+        <ul class="exp-points">
+          <li>Core contributor to a <strong>high-concurrency B2C platform</strong>; built modular APIs with Django & DRF.</li>
+          <li>Optimized <strong>PostgreSQL schemas, indexes, and queries</strong> to meet production performance requirements under load.</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-top">
+          <div class="exp-role">Backend Development Intern</div>
+          <div class="exp-badge">Jul 2024 – Dec 2024</div>
+        </div>
+        <div class="exp-company">Befog Pvt. Ltd. · Remote</div>
+        <ul class="exp-points">
+          <li>Developed <strong>REST APIs</strong> with a focus on clean architecture, performance, and code maintainability.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="sec-tag">04 · Projects</div>
+    <h2 class="sec-title">What I've Built</h2>
+    <p class="sec-sub">Production systems with real users, real data, real stakes.</p>
+    <div class="proj-grid reveal">
+      <div class="proj-card">
+        <div class="proj-banner"></div>
+        <div class="proj-body">
+          <div class="proj-icon-row">
+            <div class="proj-emoji">🏦</div>
+            <a href="https://ws.anandrathiwealth.in" target="_blank" class="proj-link">Visit Site →</a>
+          </div>
+          <div class="proj-name">Workstation — Financial Operations Platform</div>
+          <p class="proj-desc">A comprehensive backend platform for financial workflows at Anand Rathi Wealth. Built backend modules for high-scale operations with a security-first approach. Features bulk upload processing, AWS Lambda serverless functions, end-to-end encryption for sensitive data, and DSA-driven improvements for throughput.</p>
+          <div class="proj-tags">
+            <span class="ptag">Python</span><span class="ptag">Django</span>
+            <span class="ptag">AWS Lambda</span><span class="ptag">CloudFront</span>
+            <span class="ptag">API Gateway</span><span class="ptag">Nginx</span>
+            <span class="ptag">PostgreSQL</span><span class="ptag">Encryption</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-banner" style="background: linear-gradient(90deg,#f97316,#eab308,#22c55e);"></div>
+        <div class="proj-body">
+          <div class="proj-icon-row">
+            <div class="proj-emoji">⚡</div>
+            <span style="font-size:0.72rem;color:var(--muted);font-weight:500;">Now A Wave Tech</span>
+          </div>
+          <div class="proj-name">High-Concurrency B2C Platform</div>
+          <p class="proj-desc">Core backend contributor to a consumer-facing application built for high-concurrency traffic. Architected modular, reusable APIs using Django REST Framework. Executed deep PostgreSQL performance work — schema redesign, index tuning, and query profiling — to meet demanding production SLAs.</p>
+          <div class="proj-tags">
+            <span class="ptag">Django REST Framework</span>
+            <span class="ptag">PostgreSQL</span><span class="ptag">Redis</span>
+            <span class="ptag">Async Processing</span><span class="ptag">Docker</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEETCODE -->
+  <section id="leetcode">
+    <div class="sec-tag">05 · LeetCode</div>
+    <h2 class="sec-title">Problem Solving</h2>
+    <p class="sec-sub">Consistent DSA practice — because strong fundamentals make better engineers.</p>
+    <div class="lc-layout reveal">
+      <div class="lc-main-card">
+        <div class="lc-ring-wrap">
+          <svg class="lc-svg" viewBox="0 0 160 160">
+            <circle class="lc-track" cx="80" cy="80" r="65"/>
+            <circle class="lc-easy"  cx="80" cy="80" r="65"/>
+            <circle class="lc-med"   cx="80" cy="80" r="65"/>
+            <circle class="lc-hard"  cx="80" cy="80" r="65"/>
+          </svg>
+          <div class="lc-inner">
+            <div class="lc-num">117</div>
+            <div class="lc-lbl">Solved</div>
+          </div>
+        </div>
+        <div class="lc-breakdown">
+          <div class="lc-d"><div class="lc-d-num e">76</div><div class="lc-d-lbl">Easy</div></div>
+          <div class="lc-d"><div class="lc-d-num m">40</div><div class="lc-d-lbl">Medium</div></div>
+          <div class="lc-d"><div class="lc-d-num h">1</div><div class="lc-d-lbl">Hard</div></div>
+        </div>
+        <a href="https://leetcode.com/u/dkconnect10/" target="_blank" class="lc-btn">View Profile ↗</a>
+      </div>
+      <div class="lc-stats-grid">
+        <div class="lc-stat-card"><div class="lc-stat-num">1,369</div><div class="lc-stat-lbl">Contest Rating</div></div>
+        <div class="lc-stat-card"><div class="lc-stat-num">90.82%</div><div class="lc-stat-lbl">Top Percentile</div></div>
+        <div class="lc-stat-card"><div class="lc-stat-num">93</div><div class="lc-stat-lbl">Active Days</div></div>
+        <div class="lc-stat-card"><div class="lc-stat-num">50</div><div class="lc-stat-lbl">Max Streak</div></div>
+        <div class="lc-badge-card">
+          <div class="lc-badge-em">🏅</div>
+          <div class="lc-badge-txt">Earned the <strong>50 Days Badge 2026</strong> — 400 submissions in the last year.<br>Global Rank <strong>#771,134</strong> · Languages: Python3, Python, JavaScript</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="sec-tag">06 · Contact</div>
+    <h2 class="sec-title">Let's Talk</h2>
+    <div class="contact-layout reveal">
+      <div class="contact-info">
+        <p>Open to backend engineering roles, interesting FinTech problems, and collaborations. Whether it's a job opportunity or just a technical conversation — drop a message.</p>
+        <div class="contact-links">
+          <a href="mailto:dilipkumarconnect@gmail.com" class="cl"><span class="cl-ico">✉️</span> dilipkumarconnect@gmail.com</a>
+          <a href="tel:+918290234050" class="cl"><span class="cl-ico">📞</span> +91 82902 34050</a>
+          <a href="https://github.com/dkconnect10" target="_blank" class="cl"><span class="cl-ico">💻</span> github.com/dkconnect10</a>
+          <a href="https://leetcode.com/u/dkconnect10/" target="_blank" class="cl"><span class="cl-ico">🧩</span> leetcode.com/u/dkconnect10</a>
+          <a href="#" class="cl"><span class="cl-ico">🔗</span> LinkedIn — Add your URL here</a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-title">Send a Message</div>
+        <div class="fgroup"><label class="flabel">Name</label><input class="finput" type="text" placeholder="Your name"/></div>
+        <div class="fgroup"><label class="flabel">Email</label><input class="finput" type="email" placeholder="your@email.com"/></div>
+        <div class="fgroup"><label class="flabel">Message</label><textarea class="ftextarea" placeholder="What's on your mind?"></textarea></div>
+        <a href="mailto:dilipkumarconnect@gmail.com" class="fsubmit">Send Message →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Dilip<span>Kumar</span></div>
+    <div class="footer-copy">© 2026 · Jodhpur, Rajasthan, India</div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+    }, { threshold: 0.07 });
+    reveals.forEach(r => obs.observe(r));
+  </script>
+</body>
+</html>
