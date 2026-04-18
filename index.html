@@ -39,12 +39,10 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-/* ── Scrollbar ── */
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
 
-/* ── NAV ── */
 .nav{
   position:fixed;top:0;left:0;right:0;z-index:999;
   height:56px;
@@ -87,7 +85,6 @@ body{
 .nav-btn-solid{background:var(--white);color:#000}
 .nav-btn-solid:hover{background:var(--gray1)}
 
-/* ── HERO ── */
 .hero{
   min-height:100vh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -95,8 +92,6 @@ body{
   text-align:center;
   position:relative;overflow:hidden;
 }
-
-/* Vercel-style gradient mesh */
 .hero-mesh{
   position:absolute;inset:0;z-index:0;
   background:
@@ -105,7 +100,6 @@ body{
     radial-gradient(ellipse 40% 40% at 10% 60%, rgba(255,102,64,0.04) 0%, transparent 50%);
   pointer-events:none;
 }
-/* Grid lines like Vercel */
 .hero-grid{
   position:absolute;inset:0;z-index:0;
   background-image:
@@ -115,7 +109,6 @@ body{
   mask-image:radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 80%);
   pointer-events:none;
 }
-
 .hero-content{position:relative;z-index:1;max-width:800px}
 
 .hero-badge{
@@ -177,7 +170,6 @@ body{
 .btn-outline{background:transparent;color:var(--gray1);border:1px solid var(--border2)}
 .btn-outline:hover{border-color:var(--gray3);background:var(--bg2);transform:translateY(-1px)}
 
-/* Hero metrics strip */
 .hero-metrics{
   display:flex;gap:0;margin-top:72px;
   border:1px solid var(--border);border-radius:12px;
@@ -198,7 +190,6 @@ body{
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── SECTION BASE ── */
 .section{padding:96px 32px}
 .section-inner{max-width:1100px;margin:0 auto}
 
@@ -215,7 +206,6 @@ body{
 }
 .section-desc{font-size:0.95rem;color:var(--gray2);max-width:480px;letter-spacing:-0.01em;margin-bottom:56px;line-height:1.65}
 
-/* ── ABOUT ── */
 .about-section{background:var(--bg1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
 .about-text p{font-size:0.95rem;color:var(--gray2);line-height:1.8;margin-bottom:20px;letter-spacing:-0.01em}
@@ -234,7 +224,6 @@ body{
 }
 .acard-lbl{font-size:0.68rem;color:var(--gray3);font-family:'Geist Mono',monospace;letter-spacing:0.06em;text-transform:uppercase}
 
-/* ── SKILLS ── */
 .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden}
 .skill-group{background:var(--bg1);padding:28px;transition:background .2s}
 .skill-group:hover{background:var(--bg2)}
@@ -254,7 +243,6 @@ body{
 }
 .sg-tag:hover{color:var(--white);border-color:var(--gray4);background:rgba(255,255,255,0.05)}
 
-/* ── EXPERIENCE ── */
 .exp-section{background:var(--bg1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .exp-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden}
 .exp-card{
@@ -287,7 +275,6 @@ body{
 }
 .exp-bullets li::before{content:'–';position:absolute;left:0;color:var(--gray3)}
 
-/* ── PROJECTS ── */
 .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .proj-card{
   background:var(--bg1);
@@ -304,9 +291,8 @@ body{
 .proj-card:hover{border-color:rgba(255,255,255,0.12);transform:translateY(-4px);box-shadow:0 24px 64px rgba(0,0,0,0.6)}
 .proj-card:hover::after{opacity:1}
 .proj-top{
-  padding:28px 28px 0;
+  padding:28px 28px 20px;
   border-bottom:1px solid var(--border);
-  padding-bottom:20px;margin-bottom:0;
 }
 .proj-top-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .proj-name{font-size:1rem;font-weight:600;color:var(--white);letter-spacing:-0.02em}
@@ -332,14 +318,11 @@ body{
   transition:all .15s;letter-spacing:0.02em;
 }
 .proj-tech-tag:hover{color:var(--gray1);border-color:var(--border2)}
-
-/* Highlight card */
 .proj-card.featured{
   background:linear-gradient(160deg,var(--bg2) 0%,rgba(0,111,255,0.05) 100%);
   border-color:rgba(0,111,255,0.2);
 }
 
-/* ── LEETCODE ── */
 .lc-section{background:var(--bg1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .lc-layout{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
 .lc-card{
@@ -393,7 +376,6 @@ body{
 .lc-badge-text{font-size:0.82rem;color:var(--gray2);line-height:1.6;letter-spacing:-0.01em}
 .lc-badge-text strong{color:var(--gray1)}
 
-/* ── CONTACT ── */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
 .contact-desc{font-size:0.95rem;color:var(--gray2);line-height:1.75;letter-spacing:-0.01em;margin-bottom:32px}
 .contact-links{display:flex;flex-direction:column;gap:8px}
@@ -410,7 +392,6 @@ body{
 .clink-text{flex:1}
 .clink-arr{color:var(--gray3);font-size:0.75rem;transition:transform .15s}
 .clink:hover .clink-arr{transform:translateX(3px);color:var(--gray2)}
-
 .contact-form-wrap{
   background:var(--bg1);border:1px solid var(--border);
   border-radius:12px;padding:32px;
@@ -439,7 +420,6 @@ body{
 }
 .fsub:hover{background:var(--gray1);transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,255,255,0.1)}
 
-/* ── FOOTER ── */
 .footer{
   border-top:1px solid var(--border);
   padding:32px;
@@ -451,14 +431,12 @@ body{
 .footer-loc{font-size:0.78rem;color:var(--gray3);font-family:'Geist Mono',monospace}
 .footer-copy{font-size:0.75rem;color:var(--gray3);font-family:'Geist Mono',monospace}
 
-/* ── REVEAL ── */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
 .reveal.on{opacity:1;transform:translateY(0)}
 .reveal-d1{transition-delay:.05s}
 .reveal-d2{transition-delay:.1s}
 .reveal-d3{transition-delay:.15s}
 
-/* ── RESPONSIVE ── */
 @media(max-width:900px){
   .nav{padding:0 20px}
   .nav-links{display:none}
@@ -511,24 +489,24 @@ body{
       <span class="blue-grad">Engineer.</span>
     </h1>
     <p class="hero-sub">
-      <strong>Dilip Kumar</strong> — building secure, scalable APIs and cloud infrastructure for FinTech platforms. Python · Django · AWS · PostgreSQL.
+      <strong>Dilip Kumar</strong> — building secure, scalable APIs and cloud infrastructure for FinTech &amp; EdTech platforms. Python · Django · AWS · PostgreSQL.
     </p>
     <div class="hero-actions">
       <a href="mailto:dilipkumarconnect@gmail.com" class="btn btn-white">Get in touch →</a>
       <a href="https://github.com/dkconnect10" target="_blank" class="btn btn-outline">View GitHub</a>
-      <a href="#projects" class="btn btn-outline">See projects</a>
+      <a href="#experience" class="btn btn-outline">See experience</a>
     </div>
     <div class="hero-metrics">
       <div class="metric">
-        <div class="metric-num">~2yr</div>
+        <div class="metric-num">2yr+</div>
         <div class="metric-lbl">experience</div>
       </div>
       <div class="metric">
-        <div class="metric-num">130+</div>
+        <div class="metric-num">147+</div>
         <div class="metric-lbl">lc solved</div>
       </div>
       <div class="metric">
-        <div class="metric-num">60</div>
+        <div class="metric-num">81</div>
         <div class="metric-lbl">max streak</div>
       </div>
       <div class="metric">
@@ -551,22 +529,22 @@ body{
         <span class="section-eyebrow">About</span>
         <h2 class="section-title">Shipping backend<br>systems that scale.</h2>
         <div class="about-text">
-          <p>I'm a <strong>Backend Software Engineer</strong> based in Jodhpur, Rajasthan — specialised in building production systems for FinTech, where correctness, security, and performance are non-negotiable.</p>
-          <p>From <strong>transaction-heavy REST APIs</strong> to serverless AWS pipelines, bulk data processing, and PostgreSQL query optimization — I write code that holds up under real financial workloads. I take security seriously: encryption at rest and in transit, hardened headers, proper auth — foundations, not checkboxes.</p>
-          <p>Outside work, I'm a consistent <strong>DSA practitioner</strong> and actively studying System Design to architect better, larger systems.</p>
+          <p>I'm a <strong>Backend Software Engineer</strong> based in Jodhpur, Rajasthan — specialised in building production systems for <strong>FinTech and EdTech</strong>, where correctness, security, and performance are non-negotiable.</p>
+          <p>From <strong>REST APIs and serverless AWS pipelines</strong> to bulk data processing and PostgreSQL query optimization — I write code that holds up under real workloads. I take security seriously: hardened HTTP headers, proper auth, encryption — foundations, not checkboxes.</p>
+          <p>Outside work, I'm a consistent <strong>DSA practitioner</strong> with 100 Days Badge 2026 on LeetCode, and actively studying System Design to architect better, larger systems.</p>
         </div>
       </div>
       <div class="about-cards">
         <div class="acard reveal reveal-d1">
-          <div class="acard-num">~2yr</div>
+          <div class="acard-num">2yr+</div>
           <div class="acard-lbl">professional exp</div>
         </div>
         <div class="acard reveal reveal-d2">
-          <div class="acard-num">130+</div>
+          <div class="acard-num">147+</div>
           <div class="acard-lbl">lc problems</div>
         </div>
         <div class="acard reveal reveal-d3">
-          <div class="acard-num">60d</div>
+          <div class="acard-num">81d</div>
           <div class="acard-lbl">max streak</div>
         </div>
         <div class="acard reveal reveal-d1">
@@ -591,17 +569,15 @@ body{
           <span class="sg-tag">Python</span>
           <span class="sg-tag">Django</span>
           <span class="sg-tag">Django REST Framework</span>
-          <span class="sg-tag">JavaScript</span>
         </div>
       </div>
       <div class="skill-group">
         <div class="sg-label">Backend & Architecture</div>
         <div class="sg-tags">
           <span class="sg-tag">REST APIs</span>
-          <span class="sg-tag">Auth & Authorization</span>
+          <span class="sg-tag">Auth & Authorization (JWT)</span>
           <span class="sg-tag">Async Processing</span>
           <span class="sg-tag">Microservices</span>
-          <span class="sg-tag">Encryption</span>
           <span class="sg-tag">Security Hardening</span>
         </div>
       </div>
@@ -631,13 +607,13 @@ body{
         </div>
       </div>
       <div class="skill-group">
-        <div class="sg-label">Tools & Practices</div>
+        <div class="sg-label">Core CS</div>
         <div class="sg-tags">
-          <span class="sg-tag">Git</span>
           <span class="sg-tag">Data Structures & Algorithms</span>
-          <span class="sg-tag">OOPs</span>
-          <span class="sg-tag">DBMS</span>
           <span class="sg-tag">System Design</span>
+          <span class="sg-tag">OOP</span>
+          <span class="sg-tag">DBMS</span>
+          <span class="sg-tag">Git</span>
         </div>
       </div>
     </div>
@@ -654,7 +630,7 @@ body{
 
       <div class="exp-card">
         <div class="exp-header">
-          <div class="exp-role">Backend Developer</div>
+          <div class="exp-role">Backend Software Engineer</div>
           <div class="exp-pill live">● Current</div>
         </div>
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap">
@@ -663,33 +639,31 @@ body{
           <span class="exp-pill">Jodhpur, India</span>
         </div>
         <ul class="exp-bullets">
-          <li>Core contributor to <strong style="color:var(--gray1)">Workstation</strong> — a financial operations platform used at scale across Anand Rathi Wealth.</li>
-          <li>Implemented security headers across <strong style="color:var(--gray1)">Nginx, AWS CloudFront, and API Gateway</strong> to harden the production security posture.</li>
-          <li>Built serverless backend functions with <strong style="color:var(--gray1)">AWS Lambda</strong> for modular, event-driven microservice architecture.</li>
-          <li>Engineered a <strong style="color:var(--gray1)">bulk upload system</strong> to reliably process large financial datasets at scale.</li>
-          <li>Implemented <strong style="color:var(--gray1)">AES encryption/decryption</strong> for sensitive data at rest and in transit.</li>
-          <li>Reduced query latency and resolved critical production incidents through <strong style="color:var(--gray1)">index strategies and query profiling</strong>.</li>
+          <li>Implemented <strong style="color:var(--gray1)">browser-level HTTP security headers</strong> across all client-facing endpoints, mitigating XSS, clickjacking, and other web vulnerabilities.</li>
+          <li>Built <strong style="color:var(--gray1)">microservices APIs</strong> using AWS Lambda integrated with API Gateway for async processing.</li>
+          <li>Diagnosed and resolved critical <strong style="color:var(--gray1)">production-level bugs</strong> across multiple modules.</li>
         </ul>
       </div>
 
       <div class="exp-card">
         <div class="exp-header">
-          <div class="exp-role">Backend Developer</div>
+          <div class="exp-role">Backend Software Engineer</div>
           <div class="exp-pill">Jan 2025 – Dec 2025</div>
         </div>
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap">
-          <span class="exp-company">Now A Wave Technologies Pvt. Ltd.</span>
+          <span class="exp-company">Now A Wave Technologies Pvt. Ltd. — EdTech (Kreedology)</span>
           <span class="exp-pill">Jodhpur, India</span>
         </div>
         <ul class="exp-bullets">
-          <li>Core contributor to a <strong style="color:var(--gray1)">high-concurrency B2C education platform</strong> (Kreedology); built modular APIs with Django & DRF.</li>
-          <li>Optimized <strong style="color:var(--gray1)">PostgreSQL schemas, indexes, and queries</strong> to meet production SLAs under significant load.</li>
+          <li>Built <strong style="color:var(--gray1)">Assessment Report Engine</strong> — converted raw game responses into structured, readable diagnostic data for teachers and management.</li>
+          <li>Collaborated with team to build a <strong style="color:var(--gray1)">bulk Excel upload system</strong> that auto-generates all school management data, reducing manual workforce and time.</li>
+          <li>Diagnosed and fixed multiple critical <strong style="color:var(--gray1)">production-level bugs</strong> across modules.</li>
         </ul>
       </div>
 
       <div class="exp-card">
         <div class="exp-header">
-          <div class="exp-role">Backend Development Intern</div>
+          <div class="exp-role">Backend Software Engineer Intern</div>
           <div class="exp-pill">Jul 2024 – Dec 2024</div>
         </div>
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap">
@@ -697,7 +671,7 @@ body{
           <span class="exp-pill">Remote</span>
         </div>
         <ul class="exp-bullets">
-          <li>Developed <strong style="color:var(--gray1)">REST APIs</strong> focusing on clean architecture, performance, and maintainability.</li>
+          <li>Built and maintained <strong style="color:var(--gray1)">REST APIs</strong> using Django and DRF with focus on performance, clean architecture, and proper error handling.</li>
         </ul>
       </div>
 
@@ -724,7 +698,7 @@ body{
           <div class="proj-company">Anand Rathi IT · FinTech</div>
         </div>
         <div class="proj-body">
-          <p class="proj-desc">Financial operations platform handling investment workflows at scale. Built backend modules for high-throughput financial data processing, implemented AES encryption for sensitive data, engineered a bulk upload system for large datasets, and deployed serverless AWS Lambda functions with API Gateway. Security hardened via Nginx + CloudFront headers.</p>
+          <p class="proj-desc">Financial operations platform handling investment workflows at scale. Implemented browser-level HTTP security headers to harden production security posture. Built serverless microservices APIs using AWS Lambda with API Gateway. Resolved critical production incidents through targeted debugging and fixes.</p>
           <div class="proj-tech">
             <span class="proj-tech-tag">Python</span>
             <span class="proj-tech-tag">Django</span>
@@ -733,7 +707,6 @@ body{
             <span class="proj-tech-tag">API Gateway</span>
             <span class="proj-tech-tag">PostgreSQL</span>
             <span class="proj-tech-tag">Nginx</span>
-            <span class="proj-tech-tag">AES Encryption</span>
           </div>
         </div>
       </div>
@@ -749,13 +722,12 @@ body{
           <div class="proj-company">Now A Wave Technologies · Education</div>
         </div>
         <div class="proj-body">
-          <p class="proj-desc">High-concurrency B2C sports education platform. Architected modular RESTful APIs using Django REST Framework handling concurrent user traffic. Executed deep PostgreSQL performance work — schema redesign, index tuning, and query profiling — to meet demanding SLAs. Implemented Redis caching to reduce DB load.</p>
+          <p class="proj-desc">Sports education platform used across 3500+ partner schools. Built Assessment Report Engine converting raw game responses into structured diagnostic data. Developed bulk Excel upload system for school management data. Resolved multiple critical production bugs across modules.</p>
           <div class="proj-tech">
             <span class="proj-tech-tag">Django REST Framework</span>
             <span class="proj-tech-tag">PostgreSQL</span>
             <span class="proj-tech-tag">Redis</span>
             <span class="proj-tech-tag">Docker</span>
-            <span class="proj-tech-tag">Async Processing</span>
             <span class="proj-tech-tag">AWS</span>
           </div>
         </div>
@@ -781,14 +753,14 @@ body{
             <circle class="ring-hard" cx="80" cy="80" r="65"/>
           </svg>
           <div class="lc-ring-center">
-            <div class="lc-total">131</div>
+            <div class="lc-total">147</div>
             <div class="lc-total-lbl">solved</div>
           </div>
         </div>
         <div class="lc-breakdown">
-          <div class="lc-diff"><div class="lc-diff-num e">82</div><div class="lc-diff-lbl">Easy</div></div>
-          <div class="lc-diff"><div class="lc-diff-num m">48</div><div class="lc-diff-lbl">Med</div></div>
-          <div class="lc-diff"><div class="lc-diff-num h">1</div><div class="lc-diff-lbl">Hard</div></div>
+          <div class="lc-diff"><div class="lc-diff-num e">89</div><div class="lc-diff-lbl">Easy</div></div>
+          <div class="lc-diff"><div class="lc-diff-num m">56</div><div class="lc-diff-lbl">Med</div></div>
+          <div class="lc-diff"><div class="lc-diff-num h">2</div><div class="lc-diff-lbl">Hard</div></div>
         </div>
         <a href="https://leetcode.com/u/dkconnect10/" target="_blank" class="lc-cta">
           View profile on LeetCode ↗
@@ -797,14 +769,13 @@ body{
 
       <div class="lc-stats">
         <div class="lc-stat"><span class="lc-stat-lbl">Contest Rating</span><span class="lc-stat-val">1,369</span></div>
-        <div class="lc-stat"><span class="lc-stat-lbl">Global Rank</span><span class="lc-stat-val">#771,134</span></div>
         <div class="lc-stat"><span class="lc-stat-lbl">Top Percentile</span><span class="lc-stat-val">90.82%</span></div>
-        <div class="lc-stat"><span class="lc-stat-lbl">Active Days</span><span class="lc-stat-val">105</span></div>
-        <div class="lc-stat"><span class="lc-stat-lbl">Max Streak</span><span class="lc-stat-val">63 days</span></div>
+        <div class="lc-stat"><span class="lc-stat-lbl">Max Streak</span><span class="lc-stat-val">81 days</span></div>
+        <div class="lc-stat"><span class="lc-stat-lbl">Total DSA Practice</span><span class="lc-stat-val">248+</span></div>
         <div class="lc-badge">
           <div class="lc-badge-icon">🏅</div>
           <div class="lc-badge-text">
-            Earned <strong>50 Days Badge 2026</strong> — 460 submissions in the past year. Primary language: <strong>Python3</strong>.
+            Earned <strong>100 Days Badge 2026</strong> — consistent daily practice. Primary language: <strong>Python3</strong>.
           </div>
         </div>
       </div>
@@ -841,11 +812,7 @@ body{
             <span class="clink-text">leetcode.com/u/dkconnect10</span>
             <span class="clink-arr">→</span>
           </a>
-          <a href="https://www.linkedin.com/in/dilip-kumar-411a55320" 
-             class="clink" 
-             target="_blank" 
-             rel="noopener noreferrer">
-          
+          <a href="https://www.linkedin.com/in/dilip-kumar-411a55320" target="_blank" rel="noopener noreferrer" class="clink">
             <span class="clink-icon">in</span>
             <span class="clink-text">LinkedIn</span>
             <span class="clink-arr">→</span>
@@ -874,7 +841,6 @@ body{
 </footer>
 
 <script>
-// Scroll reveal
 const obs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')})
 },{threshold:0.07})
